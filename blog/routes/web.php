@@ -23,6 +23,14 @@ Route::get('/article', function(){
 ]);
 });
 
-Route::get('/article/{index}', function () {
-    return view('welcome');
-});
+Route::get('article/{index}', function ($index) {
+    $articles = [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Vivamus id massa ac ex rutrum vestibulum.",
+        "Nam purus justo, porttitor vel urna id, blandit aliquam orci."
+    ];
+    if ($index >= count($articles)) {
+        return ('articles');
+    }
+    return $articles[$index];
+})->where('index', '[0-9]+')->name('articles');
